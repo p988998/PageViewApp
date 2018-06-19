@@ -1,5 +1,7 @@
 package com.apps.nijinpan.pageviewapp;
 
+import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -18,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
         viewPager.setAdapter(new NumberPagerAdapter(getSupportFragmentManager()));
+
+        TabLayout tabLayout = (TabLayout)findViewById(R.id.view_pager_tab);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     private class NumberPagerAdapter extends FragmentPagerAdapter {
@@ -33,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             return 4;
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return "Page "+position;
         }
     }
 }
